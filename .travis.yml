@@ -1,10 +1,9 @@
 language: node_js
 node_js: node
-services:
-  - mongodb
-addons:
-  apt:
-    sources:
-      - mongodb-3.2-precise
-    packages:
-      - mongodb-org-server
+deploy:
+  provider: heroku
+  api_key:
+    secure: eEImxoDfb3sd2Nh7mIqo/2ORsUwjQu0biFpDtKVPxuuXidMaBPiHBEnWYcSLiCcblGkinX3sOpmWoxHUhSCNFdqFdv1Nnr6L4LB9EiSi/l11kaThZBVQRR5yT0xALqFUQ6oKPlXub9RlNcCcixvTRXdiRcfi0LhbWLjrvshMHxaigyYx1fziKiVBwIwhlxeRUfez3IAa+GcEpm3fxA1i0l3AkMQVEk7xX1XycqBS8mYGyqk0cMV/a60kyNvSDvU4cBxMIqsU+oPo2pDsVzOCHHswfWpD4FfUB6oC/CdosxDvYwnV8mquomegsr9Cn+cSuQOs3w2hMoOgrKqat7+At0WwcXkb5j7hKMSjIHj08vqolewEe1nEP7zw4asck1dZ4exALTW4L9csDjtHlvkYVS/RcXTCebLDdCnd50XXauikUna4olezeG5xb0igZNI3SwaFMX2LgjbJ22eacprmug7Bk3zUMEXsv28PZCzNK3fHWVw79feTV9qoqBT1yHqLTz+gUSMj7JKsDLmELw0VA8ePFrZ532EJu64wRDt7sszVKvtNs25JkqQNMEObHveoqoHx8eGb0qRmwd0OaCNQM6nPl71yKXp4qI0v+3uyxqJlqYzMpbotNtCFwah0EndMtxVwG1hQ0SI+yQynYDBZ4hiJY7Jvx2O5f3if8kXHTv8=
+  app: safe-stream-97919
+  on:
+    repo: learykara/regatta-tracker
