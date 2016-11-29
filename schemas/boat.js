@@ -1,6 +1,6 @@
-const { Schema } = require('mongoose')
+const { model, Schema } = require('mongoose')
 
-const boatSchema = Schema({
+const boatSchema = new Schema({
   club: String,
   name: {
     type: String,
@@ -14,4 +14,6 @@ const boatSchema = Schema({
   },
 })
 
-module.exports = boatSchema
+const Boat = model('Boat', boatSchema)
+
+module.exports = Boat
