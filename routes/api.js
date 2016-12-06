@@ -13,9 +13,23 @@ apiRouter.get('/users', (req, res) => {
         message: 'Internal server error',
       })
     }
-    users.map(user => user.roles.map(role => console.log(role[0])))
-    // Set headers as application/json
-    res.json(users)
+    return res.json(users)
+  })
+})
+
+apiRouter.get('/users/:userId', (req, res) => {
+  User.findOne({ _id: req.params.userId }, null, (err, user) => {
+    if (err) {
+      return res.status(500).json({
+        message: 'Internal server error',
+      })
+    }
+    if (!user) {
+      return res.status(404).json({
+        message: 'Not found',
+      })
+    }
+    return res.json(user)
   })
 })
 
@@ -26,11 +40,11 @@ apiRouter.post('/users', (req, res) => {
     roles: req.body.roles.split(','),
   }, (err, user) => {
     if (err) {
-      res.status(500).json({
+      return res.status(500).json({
         message: 'Internal server error',
       })
     }
-    res.status(201).json(user)
+    return res.status(201).json(user)
   })
 })
 /* End User API */
@@ -43,7 +57,23 @@ apiRouter.get('/boats', (req, res) => {
         message: 'Internal server error',
       })
     }
-    res.json(boats)
+    return res.json(boats)
+  })
+})
+
+apiRouter.get('/boats/:boatId', (req, res) => {
+  Boat.findOne({ _id: req.params.boatId }, null, (err, boat) => {
+    if (err) {
+      return res.status(500).json({
+        message: 'Internal server error',
+      })
+    }
+    if (!boat) {
+      return res.status(404).json({
+        message: 'Not found',
+      })
+    }
+    return res.json(boat)
   })
 })
 
@@ -52,13 +82,12 @@ apiRouter.post('/boats', (req, res) => {
     _id: req.body.userId
   }, (err, skipper) => {
     if (err) {
-      console.error(err)
-      res.status(500).json({
+      return res.status(500).json({
         message: 'Internal server error',
       })
     }
     if (!skipper) {
-      res.status(404).json({
+      return res.status(404).json({
         message: 'Skipper not found',
       })
     }
@@ -68,11 +97,11 @@ apiRouter.post('/boats', (req, res) => {
       skipper: skipper,
     }, (err, boat) => {
       if (err) {
-        res.status(500).json({
+        return res.status(500).json({
           message: 'Internal server error',
         })
       }
-      res.status(201).json(boat)
+      return res.status(201).json(boat)
     })
   })
 })
